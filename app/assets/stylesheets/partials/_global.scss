@@ -1,0 +1,19 @@
+.is-podcast-wrap {
+
+  display: none;
+
+  &.true {
+    display: block;
+  }
+
+  .show-notes-match-content-wrap {
+
+    display: none;
+
+    &.false {
+      display: block;
+    }
+
+  }
+
+}

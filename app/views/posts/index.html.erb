@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'New Post', new_post_path %>
+
+<% @posts.each do |post| %>
+<article>
+  <h2><%= link_to post do %><% if post.is_podcast %>Episode #<%= post.episode_id %>: <% end %><%= post.title %><% end %></h2>
+  <section>
+    <% if post.is_podcast %><p><a href="<%= post.audio_file_url %>" target="_blank">Listen Here</a></p><% end %>
+    <%= post.content %>
+  </section>
+</article>
+<% end %>
+
+<br>

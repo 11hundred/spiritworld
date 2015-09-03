@@ -1,0 +1,53 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :publish_timestamp do %>Publish Timestamp<% end %><br>
+    <%= f.text_field :publish_timestamp %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <hr>
+  <div class="field">
+    <%= f.label :is_podcast do %><%= f.check_box :is_podcast %> Podcast<% end %>
+  </div>
+  <div class="is-podcast-wrap<% if @post.is_podcast %> true<% end %>">
+    <div class="field">
+      <%= f.label :audio_file_url %><br>
+      <%= f.text_field :audio_file_url, { disabled: (@post.is_podcast == true ? false : true) } %>
+    </div>
+    <div class="field">
+      <%= f.label :episode_id do %>Episode ID<% end %><br>
+      <%= f.number_field :episode_id, { disabled: (@post.is_podcast == true ? false : true) } %>
+    </div>
+    <div class="field">
+      <%= f.label :show_notes_match_content do %><%= f.check_box :show_notes_match_content, { disabled: (@post.is_podcast == true ? false : true) } %>Use Content for Show Notes<% end %>
+    </div>
+    <div class="show-notes-match-content-wrap">
+      <div class="field">
+        <%= f.label :show_notes %><br>
+        <%= f.text_area :show_notes, { disabled: true } %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

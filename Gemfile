@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'font-awesome-sass', '~> 4.4.0'
+gem 'devise', '~> 3.5.2'
 
 group :development, :test do
   gem 'byebug'
