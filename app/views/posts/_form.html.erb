@@ -21,7 +21,8 @@
   </div>
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :class => 'tinymce' %>
+    <%= tinymce %>
   </div>
   <hr>
   <div class="field">
@@ -39,10 +40,10 @@
     <div class="field">
       <%= f.label :show_notes_match_content do %><%= f.check_box :show_notes_match_content, { disabled: (@post.is_podcast == true ? false : true) } %>Use Content for Show Notes<% end %>
     </div>
-    <div class="show-notes-match-content-wrap">
+    <div class="show-notes-match-content-wrap<% if @post.show_notes_match_content == false %> false<% end %>">
       <div class="field">
         <%= f.label :show_notes %><br>
-        <%= f.text_area :show_notes, { disabled: true } %>
+        <%= f.text_area :show_notes, { class: 'tinymce', disabled: true } %>
       </div>
     </div>
   </div>

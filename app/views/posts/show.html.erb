@@ -1,34 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if notice %><p id="notice"><%= notice %></p><% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<p>
-  <strong>Is podcast:</strong>
-  <%= @post.is_podcast %>
-</p>
-
-<p>
-  <strong>Episode:</strong>
-  <%= @post.episode_id %>
-</p>
-
-<p>
-  <strong>Show notes match content:</strong>
-  <%= @post.show_notes_match_content %>
-</p>
-
-<p>
-  <strong>Show notes:</strong>
-  <%= @post.show_notes %>
-</p>
+<%= render @post, :is_show => true %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
