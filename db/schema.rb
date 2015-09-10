@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903221121) do
+ActiveRecord::Schema.define(version: 20150910165545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "post_events", force: :cascade do |t|
+    t.integer  "post_id"
+    t.string   "type"
+    t.string   "url"
+    t.text     "content"
+    t.integer  "time_start"
+    t.integer  "time_end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "post_events", ["post_id"], name: "index_post_events_on_post_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -27,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150903221121) do
     t.datetime "updated_at",                                               null: false
     t.string   "audio_file_url"
     t.datetime "publish_timestamp",        default: '2015-09-03 22:01:32', null: false
+    t.boolean  "published",                default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,4 +61,5 @@ ActiveRecord::Schema.define(version: 20150903221121) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "post_events", "posts"
 end

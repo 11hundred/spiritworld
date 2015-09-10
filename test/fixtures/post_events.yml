@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_id: 
+  type: 
+  url: MyString
+  content: MyText
+  time_start: 1
+  time_end: 1
+
+two:
+  post_id: 
+  type: 
+  url: MyString
+  content: MyText
+  time_start: 1
+  time_end: 1

@@ -16,6 +16,9 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+    <%= f.label :published do %><%= f.check_box :published %> Published<% end %>
+  </div>
+  <div class="field">
     <%= f.label :publish_timestamp do %>Publish Timestamp<% end %><br>
     <%= f.text_field :publish_timestamp %>
   </div>
@@ -28,6 +31,7 @@
   <div class="field">
     <%= f.label :is_podcast do %><%= f.check_box :is_podcast %> Podcast<% end %>
   </div>
+  <% if !@post.is_podcast %><p>Save post as a 'Podcast' (and unpublished) to add timeline events.</p><% end %>
   <div class="is-podcast-wrap<% if @post.is_podcast %> true<% end %>">
     <div class="field">
       <%= f.label :audio_file_url %><br>
@@ -46,9 +50,11 @@
         <%= f.text_area :show_notes, { class: 'tinymce', disabled: true } %>
       </div>
     </div>
+    <h3>Timeline Events</h3>
+    <p>Add New</p>
   </div>
   <hr>
   <div class="actions">
-    <%= f.submit %>
+    <button type="submit" class="button small">Save</button>
   </div>
 <% end %>

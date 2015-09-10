@@ -10,6 +10,7 @@
 posts = Post.create([
   {
     title: "Intro Post",
+    published: true,
     is_podcast: false,
     content: "This is a non-podcast post. There are no shownotes.",
     show_notes_match_content: true,
@@ -17,6 +18,7 @@ posts = Post.create([
   },
   {
     title: "Intro Episode",
+    published: true,
     is_podcast: true,
     content: "This is the episode description. There are seperate show notes.",
     show_notes_match_content: false,
@@ -27,6 +29,7 @@ posts = Post.create([
   },
   {
     title: "Announcement Post",
+    published: true,
     is_podcast: false,
     content: "This is a non-podcast post. There are no shownotes.",
     show_notes_match_content: true,
@@ -34,10 +37,11 @@ posts = Post.create([
   },
   {
     title: "Second Episode",
+    published: true,
     is_podcast: true,
     content: "This is the episode description.",
     show_notes_match_content: true,
-    audio_file_url: 'http://ia800504.us.archive.org/18/items/en-chrysoberyl-artic/En-Chrysoberyl-article.mp3',
+    audio_file_url: 'http://ia800502.us.archive.org/6/items/dumb-iron-article-1/Dumb-iron-article-1.mp3',
     episode_id: 2,
     publish_timestamp: '2015-09-04 22:01:32'
   },
