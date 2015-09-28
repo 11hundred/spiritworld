@@ -15,6 +15,7 @@ gem 'foundation-rails', '~> 5.5.2'
 gem 'devise', '~> 3.5.2'
 gem 'tinymce-rails', '~> 4.1.6'
 gem 'will_paginate', '~> 3.0.6'
+gem 'hirb', '~> 0.7.3'
 
 group :development, :test do
   gem 'byebug'

@@ -5,6 +5,16 @@
     <% if post.is_podcast %>
     <audio controls src="<%= post.audio_file_url %>"></audio>
     <p><a href="<%= post.audio_file_url %>" target="_blank">Download Episode</a></p>
+    <h3>Post Events:</h3>
+    <% if post.post_events.present? %>
+    <ul>
+      <% post.post_events.each do |post_event| %>
+      <li><%= post_event.content %></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p>No Post Events</p>
+    <% end %>
     <% end %>
     <%= post.content.html_safe %>
     <% if !post.show_notes_match_content and post.show_notes %>

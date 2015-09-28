@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910165545) do
+ActiveRecord::Schema.define(version: 20150928195009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "post_events", force: :cascade do |t|
     t.integer  "post_id"
-    t.string   "type"
+    t.string   "content_type"
     t.string   "url"
     t.text     "content"
     t.integer  "time_start"
     t.integer  "time_end"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "post_events", ["post_id"], name: "index_post_events_on_post_id", using: :btree

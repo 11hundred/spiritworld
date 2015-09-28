@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path, { class: 'button small' } %>
 
 <%= render :partial => 'post', :collection => @posts %>
 
