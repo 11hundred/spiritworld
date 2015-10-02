@@ -58,23 +58,34 @@
 <% end %>
 <% if @post.id %>
 <h3>Timeline Events</h3>
-<p>Add New</p>
+<% if @post.post_events.present? %>
+<ul>
+  <% @post.post_events.each do |post_event| %>
+  <li><%= post_event.start_end_display %> - <%= post_event.content_type %></li>
+  <% end %>
+</ul>
+<% end %>
+<h4>Add New</h4>
 <%= form_for([@post, @post.post_events.build]) do |f| %>
-  <div class="field">
-    <%= f.label :time_start %><br>
-    <%= f.text_field :time_start %>
+  <div class="row">
+    <div class="small-6 columns field">
+      <%= f.label :time_start %><br>
+      <%= f.text_field :time_start, :required => true, :placeholder => 'HH:MM:SS' %>
+    </div>
+    <div class="small-6 columns field">
+      <%= f.label :time_end %><br>
+      <%= f.text_field :time_end, :required => true, :placeholder => 'HH:MM:SS' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :time_end %><br>
-    <%= f.text_field :time_end %>
-  </div>
-  <div class="field">
-    <%= f.label :content_type %><br>
-    <%= f.select :content_type, options_for_select(['test', 'test2']) %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
+  <div class="row">
+    <div class="small-6 columns field">
+      <%= f.label :content_type %><br>
+      <%= f.select :content_type, options_for_select(['test', 'test2']) %>
+    </div>
+    <div class="small-6 columns field">
+      <%= f.label :url %><br>
+      <%= f.text_field :url %>
+    </div>
   </div>
   <div class="field">
     <%= f.label :content %><br>

@@ -9,7 +9,7 @@
     <% if post.post_events.present? %>
     <ul>
       <% post.post_events.each do |post_event| %>
-      <li><%= post_event.content %></li>
+      <li><%= post_event.start_end_display %> - <%= post_event.content %></li>
       <% end %>
     </ul>
     <% else %>
