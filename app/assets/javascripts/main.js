@@ -43,7 +43,7 @@ function calculateAudioLength(audioPlayer, buttonTarget) {
   var podcastMinutes = Math.floor((podcastRawSeconds - (podcastHours * 3600)) / 60);
   var podcastSeconds = Math.floor((podcastRawSeconds - (podcastHours * 3600)) % 60);
   var podcastLengthHMS = padTimeBlock(podcastHours) + ':' + padTimeBlock(podcastMinutes) + ':' + padTimeBlock(podcastSeconds);
-  buttonTarget.data('time', podcastLengthHMS);
+  buttonTarget.data('time', podcastLengthHMS).attr('title', 'End (' + podcastLengthHMS + ')');
 }
 
 function padTimeBlock(string) {
