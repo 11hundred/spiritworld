@@ -14,6 +14,17 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post_events_count = @post.post_events.size
+    if @post_events_count > 0
+      max_time_end = 0
+      @post.post_events.each do |post_event|
+        if post_event.time_end > max_time_end
+          max_time_end = post_event.time_end
+        end
+      end
+
+      @last_post_event_time_end = Time.at(max_time_end).utc.strftime("%H:%M:%S")
+    end
   end
 
   def create

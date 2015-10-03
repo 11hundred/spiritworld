@@ -24,4 +24,29 @@ jQuery(document).ready(function($) {
     }
   });
 
+  $('.insert-time-button').click(function(e) {
+    e.preventDefault();
+    if ($(this).hasClass('insert-beginning')) {
+      $('#post_event_time_start').val($(this).data('time'));
+    } else if ($(this).hasClass('insert-last-end')) {
+      $('#post_event_time_start').val($(this).data('time'));
+    } else if ($(this).hasClass('insert-end')) {
+      $('#post_event_time_end').val($(this).data('time'));
+    }
+  });
+
 });
+
+function calculateAudioLength(audioPlayer, buttonTarget) {
+  var podcastRawSeconds = audioPlayer.duration;
+  var podcastHours = Math.floor(podcastRawSeconds / 3600);
+  var podcastMinutes = Math.floor((podcastRawSeconds - (podcastHours * 3600)) / 60);
+  var podcastSeconds = Math.floor((podcastRawSeconds - (podcastHours * 3600)) % 60);
+  var podcastLengthHMS = padTimeBlock(podcastHours) + ':' + padTimeBlock(podcastMinutes) + ':' + padTimeBlock(podcastSeconds);
+  buttonTarget.data('time', podcastLengthHMS);
+}
+
+function padTimeBlock(string) {
+  string = string.toString();
+  return string.length < 2 ? padTimeBlock('0' + string) : string;
+}
