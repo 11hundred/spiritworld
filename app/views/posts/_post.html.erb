@@ -8,9 +8,7 @@
     <h3>Post Events:</h3>
     <% if post.post_events.present? %>
     <ul>
-      <% post.post_events.each do |post_event| %>
-      <li><%= post_event.start_end_display %> - <%= post_event.content %></li>
-      <% end %>
+      <%= render :collection => post.post_events, :partial => 'post_events/post_event' %>
     </ul>
     <% else %>
     <p>No Post Events</p>

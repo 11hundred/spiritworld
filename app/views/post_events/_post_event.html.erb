@@ -1,0 +1,17 @@
+<li>
+  <div><%= Time.at(post_event.time_start).utc.strftime("%H:%M:%S") %> to <%= Time.at(post_event.time_end).utc.strftime("%H:%M:%S") %></div>
+  <div>
+    <% if post_event.content_type == 'image' %>
+    <img src="<%= post_event.url %>">
+    <% elsif post_event.content_type == 'link' %>
+    <a href="<%= post_event.url %>"><%= post_event.url %></a>
+    <% elsif post_event.content_type == 'video_youtube' %>
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/<%= post_event.youtube_video_id %>" frameborder="0" allowfullscreen></iframe>
+    <% end %>
+  </div>
+  <% if post_event.content.present? %>
+  <div>
+    <%= post_event.content %>
+  </div>
+  <% end %>
+</li>

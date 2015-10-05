@@ -60,9 +60,7 @@
 <h3>Timeline Events</h3>
 <% if @post.post_events.present? %>
 <ul>
-  <% @post.post_events.each do |post_event| %>
-  <li><%= post_event.start_end_display %> - <%= post_event.content_type %></li>
-  <% end %>
+  <%= render :collection => @post.post_events, :partial => 'post_events/post_event' %>
 </ul>
 <% end %>
 <h4>Add New</h4>
@@ -77,23 +75,23 @@ jQuery(document).ready(function($) {
 <%= form_for([@post, @post.post_events.build]) do |f| %>
   <div class="row">
     <div class="small-6 columns field">
-      <%= f.label :time_start %><br>
+      <%= f.label :time_start, 'Start Time' %><br>
       <button id="insert-beginning-button" class="tiny insert-time-button insert-beginning" title="Beginning (00:00:00)" data-time="00:00:00"><i class="fa fa-fw fa-step-backward"></i></button><% if @post_events_count > 0 %><button id="insert-last-end-button" class="tiny insert-time-button insert-last-end"  title="End of Last Event (<%= @last_post_event_time_end %>)" data-time="<%= @last_post_event_time_end %>"><i class="fa fa-fw fa-forward"></i></button><% end %>
       <%= f.text_field :time_start, :required => true, :placeholder => 'HH:MM:SS', :value => @post_events_count < 1 ? '00:00:00' : @last_post_event_time_end %>
     </div>
     <div class="small-6 columns field">
-      <%= f.label :time_end %><br>
+      <%= f.label :time_end, 'End Time' %><br>
       <button id="insert-end-button" class="tiny insert-time-button insert-end" title="End (00:00:00)" data-time="00:00:00"><i class="fa fa-fw fa-step-forward"></i></button>
       <%= f.text_field :time_end, :required => true, :placeholder => 'HH:MM:SS' %>
     </div>
   </div>
   <div class="row">
     <div class="small-6 columns field">
-      <%= f.label :content_type %><br>
-      <%= f.select :content_type, options_for_select(['test', 'test2']) %>
+      <%= f.label :content_type, 'Content Type' %><br>
+      <%= f.select :content_type, post_event_content_types %>
     </div>
     <div class="small-6 columns field">
-      <%= f.label :url %><br>
+      <%= f.label :url, 'URL' %><br>
       <%= f.text_field :url %>
     </div>
   </div>
