@@ -1,3 +1,6 @@
+var singleAudioPlayer;
+var singleAudioPlayerInterval;
+
 jQuery(document).ready(function($) {
 
   $('input#post_is_podcast').click(function() {
@@ -35,7 +38,28 @@ jQuery(document).ready(function($) {
     }
   });
 
+  singleAudioPlayer = $('#single-audio-player')[0];
+
+  singleAudioPlayer.onplay = function() {
+    setInterval(function() {
+      checkAudioStage(singleAudioPlayer);
+    }, 1000);
+  };
+
 });
+
+function checkAudioStage(singleAudioPlayer) {
+  var audioCurrentTime = Math.floor(singleAudioPlayer.currentTime);
+  $('.post-events-stage .post-events-list li').each(function() {
+    var thisLI = $(this);
+    if (thisLI.data('time-start') == audioCurrentTime) {
+      thisLI.addClass('active');
+    }
+    if (thisLI.data('time-end') <= audioCurrentTime) {
+      thisLI.fadeOut().removeClass('active');
+    }
+  });
+}
 
 function calculateAudioLength(audioPlayer, buttonTarget) {
   var podcastRawSeconds = audioPlayer.duration;

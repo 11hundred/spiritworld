@@ -3,21 +3,21 @@
   <p><%= post.publish_timestamp.strftime("%B %e, %Y") %></p>
   <section>
     <% if post.is_podcast %>
-    <audio controls src="<%= post.audio_file_url %>"></audio>
+    <audio id="single-audio-player" controls src="<%= post.audio_file_url %>"></audio>
     <p><a href="<%= post.audio_file_url %>" target="_blank">Download Episode</a></p>
-    <h3>Post Events:</h3>
-    <% if post.post_events.present? %>
-    <ul>
-      <%= render :collection => post.post_events, :partial => 'post_events/post_event' %>
-    </ul>
-    <% else %>
-    <p>No Post Events</p>
-    <% end %>
     <% end %>
     <%= post.content.html_safe %>
     <% if !post.show_notes_match_content and post.show_notes %>
     <hr>
     <%= post.show_notes.html_safe %>
+    <% end %>
+    <% if post.post_events.present? %>
+    <h3>Post Events Stage:</h3>
+    <div class="post-events-stage">
+      <ul class="post-events-list">
+        <%= render :collection => post.post_events, :partial => 'post_events/post_event' %>
+      </ul>
+    </div>
     <% end %>
   </section>
 </article>
