@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :post_events
   end
 
+  get 'feed' => 'posts#feed'
+
   root 'posts#index'
 
 end

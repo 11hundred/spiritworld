@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<p><%= link_to 'Podcast Feed', feed_path(:format => 'rss', :all => 'false') %></p>
+<p><%= link_to 'All Feed (includes non-podcast posts)', feed_path(:format => 'rss', :all => 'true') %></p>
+
 <%= link_to 'New Post', new_post_path, { class: 'button small' } %>
 
 <%= render :partial => 'post', :collection => @posts %>
