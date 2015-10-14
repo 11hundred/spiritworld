@@ -47,4 +47,23 @@ posts = Post.create([
   },
 ])
 
+post_events = PostEvent.create([
+  {
+    post_id: 4,
+    content_type: 'image',
+    url: 'http://bloximages.newyork1.vip.townnews.com/dailynebraskan.com/content/tncms/assets/v3/editorial/1/11/111d3344-6653-11e5-878a-7f455e07273c/5609f997d901c.image.jpg',
+    content: '',
+    time_start: 0,
+    time_end: 10
+  },
+  {
+    post_id: 4,
+    content_type: 'video_youtube',
+    url: 'https://www.youtube.com/watch?v=9D05ej8u-gU',
+    content: '',
+    time_start: 10,
+    time_end: 20
+  }
+])
+
 user = User.create! :email => 'test@example.com', :password => 'password', :password_confirmation => 'password'
