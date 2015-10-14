@@ -5,7 +5,7 @@ else
 end
 
 xml.instruct! :xml, :version => '1.0'
-xml.rss :version => '2.0' do
+xml.rss('xmlns:content' => 'http://purl.org/rss/1.0/modules/content/', 'xmlns:itunes' => 'http://www.itunes.com/dtds/podcast-1.0.dtd', 'xmlns:media' => 'http://www.rssboard.org/media-rss', :version => '2.0')  do
   xml.channel do
     xml.title sitename
     xml.description sitedescription
