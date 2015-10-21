@@ -76,12 +76,12 @@ jQuery(document).ready(function($) {
   <div class="row">
     <div class="small-6 columns field">
       <%= f.label :time_start, 'Start Time' %><br>
-      <button id="insert-beginning-button" class="tiny insert-time-button insert-beginning" title="Beginning (00:00:00)" data-time="00:00:00"><i class="fa fa-fw fa-step-backward"></i></button><% if @post_events_count > 0 %><button id="insert-last-end-button" class="tiny insert-time-button insert-last-end"  title="End of Last Event (<%= @last_post_event_time_end %>)" data-time="<%= @last_post_event_time_end %>"><i class="fa fa-fw fa-forward"></i></button><% end %>
+      <button type="button" id="insert-beginning-button" class="tiny insert-time-button insert-beginning" title="Beginning (00:00:00)" data-time="00:00:00"><i class="fa fa-fw fa-step-backward"></i></button><% if @post_events_count > 0 %><button type="button" id="insert-last-end-button" class="tiny insert-time-button insert-last-end"  title="End of Last Event (<%= @last_post_event_time_end %>)" data-time="<%= @last_post_event_time_end %>"><i class="fa fa-fw fa-forward"></i></button><% end %>
       <%= f.text_field :time_start, :required => true, :placeholder => 'HH:MM:SS', :value => @post_events_count < 1 ? '00:00:00' : @last_post_event_time_end %>
     </div>
     <div class="small-6 columns field">
       <%= f.label :time_end, 'End Time' %><br>
-      <button id="insert-end-button" class="tiny insert-time-button insert-end" title="End (00:00:00)" data-time="00:00:00"><i class="fa fa-fw fa-step-forward"></i></button>
+      <button type="button" id="insert-end-button" class="tiny insert-time-button insert-end" title="End (00:00:00)" data-time="00:00:00"><i class="fa fa-fw fa-step-forward"></i></button>
       <%= f.text_field :time_end, :required => true, :placeholder => 'HH:MM:SS' %>
     </div>
   </div>
