@@ -1,6 +1,14 @@
 <% if notice %><p id="notice"><%= notice %></p><% end %>
 
-<%= render @post, :is_show => true %>
+<%= render @post %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+
+<script>
+if (gup('play') == 1) {
+  setTimeout(function() {
+    singleAudioPlayer.play();
+  }, 1000);
+}
+</script>

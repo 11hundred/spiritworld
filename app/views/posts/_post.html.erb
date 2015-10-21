@@ -1,17 +1,21 @@
 <article>
   <h2><%= link_to post do %><% if post.is_podcast %>Episode #<%= post.episode_id %>: <% end %><%= post.title %><% end %></h2>
-  <p><%= post.publish_timestamp.strftime("%B %e, %Y") %></p>
+  <p><%= post.publish_timestamp.strftime("%B%e, %Y") %></p>
   <section>
     <% if post.is_podcast %>
-    <audio id="single-audio-player" controls src="<%= post.audio_file_url %>"></audio>
-    <p><a href="<%= post.audio_file_url %>" target="_blank">Download Episode</a></p>
+      <% if params[:action] == 'show' %>
+      <audio id="single-audio-player" controls src="<%= post.audio_file_url %>"></audio>
+      <p><a href="<%= post.audio_file_url %>" target="_blank">Download Episode</a></p>
+      <% else %>
+      <div><%= link_to post_path(post, :params => { :play => 1 }), :class => 'button small' do %><i class="fa fa-play left"></i>Play Episode<% end %></div>
+      <% end %>
     <% end %>
     <%= post.content.html_safe %>
     <% if !post.show_notes_match_content and post.show_notes %>
     <hr>
     <%= post.show_notes.html_safe %>
     <% end %>
-    <% if post.post_events.present? %>
+    <% if post.post_events.present? and params[:action] == 'show' %>
     <h3>Post Events Stage:</h3>
     <div class="post-events-stage">
       <ul class="post-events-list">

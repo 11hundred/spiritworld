@@ -1,3 +1,15 @@
+.fa {
+
+  &.left {
+    margin-right: 0.5em;
+  }
+
+  &.right {
+    margin-left: 0.5em;
+  }
+  
+}
+
 .is-podcast-wrap {
 
   display: none;
