@@ -27,9 +27,9 @@ xml.rss('xmlns:content' => 'http://purl.org/rss/1.0/modules/content/', 'xmlns:it
         xml.pubDate post.publish_timestamp.to_s(:rfc822)
         xml.link root_url.gsub(/\/+$/, '') + post_path(post.id)
         if post.show_notes_match_content?
-          xml.description post.content
+          xml.description post.content.to_s
         else
-          xml.description post.content + '<br><br>' + post.show_notes
+          xml.description post.content.to_s + '<br><br>' + post.show_notes.to_s
         end
         if post.is_podcast
           xml.itunes :explicit, 'no'
