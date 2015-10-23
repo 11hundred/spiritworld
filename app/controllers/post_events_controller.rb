@@ -1,8 +1,6 @@
 class PostEventsController < ApplicationController
-	before_action :set_post_event, only: [:destroy]
-
-	def index
-	end
+  before_action :authenticate_user!
+	before_action :set_post_event, except: [:create]
 
 	def create
     @post = Post.find(params[:post_id])
@@ -11,19 +9,19 @@ class PostEventsController < ApplicationController
     @post_event.time_start = convert_mhs_to_seconds(params[:post_event][:time_start])
     @post_event.time_end = convert_mhs_to_seconds(params[:post_event][:time_end])
     @post_event.save
-    redirect_to post_path(@post)
+    redirect_to edit_post_path(@post)
   end
 
   def destroy
     @post_event.destroy
     respond_to do |format|
-      format.html { redirect_to post_path(@post_event.post) }
+      format.html { redirect_to edit_post_path(@post_event.post) }
     end
   end
 
   private
   	def set_post_event
-      @post_event = post_event.find(params[:id])
+      @post_event = PostEvent.find(params[:id])
     end
 
     def convert_mhs_to_seconds(given_mhs)
