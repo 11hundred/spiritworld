@@ -15,6 +15,9 @@ xml.rss('xmlns:content' => 'http://purl.org/rss/1.0/modules/content/', 'xmlns:it
     xml.itunes :author, sitename
     xml.itunes :summary, sitedescription
     xml.itunes :explicit, 'no'
+    if sitepodcastimage
+      xml.itunes :image, { :href => sitepodcastimage }
+    end
 
     for post in @post_list
       xml.item do
@@ -33,6 +36,9 @@ xml.rss('xmlns:content' => 'http://purl.org/rss/1.0/modules/content/', 'xmlns:it
         end
         if post.is_podcast
           xml.itunes :explicit, 'no'
+          if post.featured_image
+            xml.itunes :image, { :href => post.featured_image }
+          end
           xml.enclosure('url' => post.audio_file_url)
         end
       end

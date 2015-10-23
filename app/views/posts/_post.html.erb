@@ -1,4 +1,4 @@
-<article>
+<article<% if params[:action] == 'show' %> class="post-single"<% if post.is_podcast and post.featured_image %> style="background-image: url(<%= post.featured_image %>);"<% end %><% end %>>
   <h2><%= link_to post do %><% if post.is_podcast %>Episode #<%= post.episode_id %>: <% end %><%= post.title %><% end %></h2>
   <p><%= post.publish_timestamp.strftime("%B%e, %Y") %></p>
   <section>

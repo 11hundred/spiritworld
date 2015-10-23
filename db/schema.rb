@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928195009) do
+ActiveRecord::Schema.define(version: 20151023184054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150928195009) do
     t.string   "audio_file_url"
     t.datetime "publish_timestamp",        default: '2015-09-03 22:01:32', null: false
     t.boolean  "published",                default: false
+    t.string   "featured_image"
   end
 
   create_table "users", force: :cascade do |t|

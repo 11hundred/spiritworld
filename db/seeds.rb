@@ -43,7 +43,8 @@ posts = Post.create([
     show_notes_match_content: true,
     audio_file_url: 'http://ia800502.us.archive.org/6/items/dumb-iron-article-1/Dumb-iron-article-1.mp3',
     episode_id: 2,
-    publish_timestamp: '2015-09-04 22:01:32'
+    publish_timestamp: '2015-09-04 22:01:32',
+    featured_image: 'https://s3.amazonaws.com/rapgenius/1359958956_Page101_Spirits_Absolut_AbsolutVodka_800x800.jpg'
   },
 ])
 

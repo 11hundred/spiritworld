@@ -69,6 +69,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :content, :is_podcast, :episode_id, :show_notes_match_content, :show_notes, :audio_file_url, :publish_timestamp, :published)
+      params.require(:post).permit(:title, :content, :is_podcast, :episode_id, :show_notes_match_content, :show_notes, :audio_file_url, :publish_timestamp, :published, :featured_image)
     end
 end
