@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :feed]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post_events_count, only: [:edit]
 
   def index
     @posts = Post.published.paginate(:page => params[:page])
@@ -21,17 +22,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post_events_count = @post.post_events.size
-    if @post_events_count > 0
-      max_time_end = 0
-      @post.post_events.each do |post_event|
-        if post_event.time_end > max_time_end
-          max_time_end = post_event.time_end
-        end
-      end
-
-      @last_post_event_time_end = Time.at(max_time_end).utc.strftime("%H:%M:%S")
-    end
   end
 
   def create
@@ -66,6 +56,19 @@ class PostsController < ApplicationController
   private
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def set_post_events_count
+      @post_events_count = @post.post_events.size
+      if @post_events_count > 0
+        max_time_end = 0
+        @post.post_events.each do |post_event|
+          if post_event.time_end > max_time_end
+            max_time_end = post_event.time_end
+          end
+        end
+        @last_post_event_time_end = Time.at(max_time_end).utc.strftime("%H:%M:%S")
+      end
     end
 
     def post_params

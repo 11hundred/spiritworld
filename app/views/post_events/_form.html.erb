@@ -1,0 +1,63 @@
+<% if @post.post_events.present? %>
+<ul class="edit-post-events-list">
+  <%= render :collection => @post.post_events, :partial => 'post_events/post_event' %>
+</ul>
+<% end %>
+<audio id="audio-podcast-dummy" src="<%= @post.audio_file_url %>"></audio>
+<script>
+jQuery(document).ready(function($) {
+  setTimeout(function() {
+    calculateAudioLength($('#audio-podcast-dummy')[0], $('#insert-end-button'));
+  }, 1000);
+});
+</script>
+
+<%
+  if params[:controller] == 'posts'
+    post_event = @post.post_events.build
+  else
+    post_event = @post_event
+  end
+%>
+
+<%= form_for([@post, post_event]) do |f| %>
+  <% if post_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post_event.errors.count, "error") %> prohibited this post event from being saved:</h2>
+
+      <ul>
+      <% post_event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="small-6 columns field">
+      <%= f.label :time_start, 'Start Time' %><br>
+      <button type="button" id="insert-beginning-button" class="tiny insert-time-button insert-beginning" title="Beginning (00:00:00)" data-time="00:00:00"><i class="fa fa-fw fa-step-backward"></i></button><% if @post_events_count > 0 %><button type="button" id="insert-last-end-button" class="tiny insert-time-button insert-last-end"  title="End of Last Event (<%= @last_post_event_time_end %>)" data-time="<%= @last_post_event_time_end %>"><i class="fa fa-fw fa-forward"></i></button><% end %>
+      <%= f.text_field :time_start, :required => true, :placeholder => 'HH:MM:SS', :value => (post_event.time_start ? Time.at(post_event.time_start).utc.strftime("%H:%M:%S") : (@last_post_event_time_end ? @last_post_event_time_end : '00:00:00')) %>
+    </div>
+    <div class="small-6 columns field">
+      <%= f.label :time_end, 'End Time' %><br>
+      <button type="button" id="insert-end-button" class="tiny insert-time-button insert-end" title="End (00:00:00)" data-time="00:00:00"><i class="fa fa-fw fa-step-forward"></i></button>
+      <%= f.text_field :time_end, :required => true, :placeholder => 'HH:MM:SS', :value => (post_event.time_end ? Time.at(post_event.time_end).utc.strftime("%H:%M:%S") : '') %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-6 columns field">
+      <%= f.label :content_type, 'Content Type' %><br>
+      <%= f.select :content_type, post_event_content_types %>
+    </div>
+    <div class="small-6 columns field">
+      <%= f.label :url, 'URL' %><br>
+      <%= f.text_field :url %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <button type="submit" class="button">Save Event</button>
+<% end %>
