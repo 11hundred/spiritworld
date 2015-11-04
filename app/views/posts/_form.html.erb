@@ -62,5 +62,18 @@
 <% end %>
 <% if @post.id %>
 <h3>Timeline Events</h3>
-<%= render :partial => 'post_events/form' %>
+<ul id="edit-posts-events-list" class="edit-post-events-list"><% if @post.post_events.present? %><%= render :collection => @post.post_events, :partial => 'post_events/post_event' %><% end %></ul>
+<audio id="audio-podcast-dummy" src="<%= @post.audio_file_url %>"></audio>
+<script>
+jQuery(document).ready(function($) {
+  setTimeout(function() {
+    calculateAudioLength($('#audio-podcast-dummy')[0], $('#insert-end-button'));
+  }, 1000);
+});
+</script>
+<div>
+  <%= link_to 'New Post Event', new_post_post_event_path(@post), remote: true, class: 'button' %>
+</div>
+<div id="new-post-event-form-wrap" class="new-post-event-form-wrap" style="display:none;">
+</div>
 <% end %>
