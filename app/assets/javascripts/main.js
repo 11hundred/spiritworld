@@ -36,6 +36,9 @@ jQuery(document).ready(function($) {
     }
   });
 
+});
+
+function applyPostEventTimeButtonActions() {
   $('.insert-time-button').click(function(e) {
     var dummyAudioPlayer = $('#audio-podcast-dummy')[0];
     e.preventDefault();
@@ -48,8 +51,7 @@ jQuery(document).ready(function($) {
       $('#post_event_time_end').val($('#insert-end-button').data('time'));
     }
   });
-
-});
+}
 
 function checkAudioStage(singleAudioPlayer) {
   var audioCurrentTime = Math.floor(singleAudioPlayer.currentTime);
