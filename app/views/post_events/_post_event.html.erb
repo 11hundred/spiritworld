@@ -1,6 +1,6 @@
 <li data-time-start="<%= post_event.time_start %>" data-time-end="<%= post_event.time_end %>">
   <% logger.debug "PARAMS: #{params}" %>
-  <div><% if params[:action] == 'edit' or (params[:action] != 'index' and params[:action] != 'show') %><%= link_to 'edit', edit_post_post_event_path(post_event.post, post_event), remote: true %> - <%= link_to 'delete', post_post_event_path(post_event.post, post_event), remote: true, method: :delete, data: { confirm: "Are you sure you would like to delete this post event?" } %> - <% end %><%= Time.at(post_event.time_start).utc.strftime("%H:%M:%S") %> to <%= Time.at(post_event.time_end).utc.strftime("%H:%M:%S") %></div>
+  <div><% if params[:action] == 'edit' or (params[:action] != 'index' and params[:action] != 'show') %><%= link_to 'edit', edit_post_post_event_path(post_event.post, post_event), remote: true, class: 'edit-post-event-link' %> - <%= link_to 'delete', post_post_event_path(post_event.post, post_event), remote: true, method: :delete, data: { confirm: "Are you sure you would like to delete this post event?" } %> - <% end %><%= Time.at(post_event.time_start).utc.strftime("%H:%M:%S") %> to <%= Time.at(post_event.time_end).utc.strftime("%H:%M:%S") %></div>
   <div>
     <% if post_event.content_type == 'image' %>
     <img src="<%= post_event.url %>">
@@ -14,7 +14,7 @@
   </div>
   <% if post_event.content.present? %>
   <div>
-    <%= post_event.content %>
+    <%= post_event.content.html_safe %>
   </div>
   <% end %>
 </li>

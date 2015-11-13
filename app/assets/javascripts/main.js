@@ -3,6 +3,8 @@ var singleAudioPlayerInterval;
 
 jQuery(document).ready(function($) {
 
+  addEditLinkActions();
+
   singleAudioPlayer = $('#single-audio-player')[0];
   if (singleAudioPlayer) {
     singleAudioPlayer.onplay = function() {
@@ -78,6 +80,12 @@ function calculateAudioLength(audioPlayer, buttonTarget) {
 function padTimeBlock(string) {
   string = string.toString();
   return string.length < 2 ? padTimeBlock('0' + string) : string;
+}
+
+function addEditLinkActions() {
+  $('.edit-post-event-link').click(function() {
+    tinyMCE.execCommand('mceRemoveEditor', true, 'post_event_content');
+  });
 }
 
 function gup(name, url) {
